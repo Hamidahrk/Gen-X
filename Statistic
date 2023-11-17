@@ -1,30 +1,27 @@
-git commit -m "Add codes from ChatGPT demo"
+# Import libraries
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 
-# Create a list of countries
+# Create lists from data
 countries = ["Kuwait", "KSA", "UAE", "Qatar", "Bahrain", "Oman"]
+monthly_searches_stem_steam_programs = [6060, 25014, 27839, 7721, 3016, 4444]
+monthly_searches_stem_steam_competitions = [4315, 15811, 20700, 5276, 2452, 3392]
 
-# Create a list of average frequency searches for STEM/STEAM programs/courses
-average_frequency_searches_programs = [2000, 3000, 4000, 5000, 6000, 7000]
+# Create DataFrame from lists
+df = pd.DataFrame(list(zip(countries, monthly_searches_stem_steam_programs, monthly_searches_stem_steam_competitions)), columns = ['Country', 'Monthly Searches for STEM/STEAM Programs/Courses', 'Monthly Searches for STEM/STEAM Competitions'])
 
-# Create a list of average frequency searches for STEM/STEAM competitions
-average_frequency_searches_competitions = [1000, 2000, 3000, 4000, 5000, 6000]
+# Create a bar chart to compare monthly searches for STEM/STEAM programs/courses and STEM/STEAM competitions
+plt.figure(figsize=(10, 6))
+df.plot(x='Country', kind='bar', stacked=False, title='Monthly Searches for STEM/STEAM Programs/Courses vs. STEM/STEAM Competitions')
+plt.xlabel('Country')
+plt.ylabel('Monthly Searches')
+plt.legend(title='Search Type')
+plt.grid(axis='y')
+plt.xticks(rotation=45)
+plt.tight_layout()
 
-# Create a DataFrame
-df = pd.DataFrame(list(zip(countries, average_frequency_searches_programs, average_frequency_searches_competitions)), columns = ['Country', 'Average Frequency Search Programs', 'Average Frequency Search Competitions'])
+# Save the figure image
+#plt.savefig('STEM_STEAM_Programs_Courses_vs_Competitions_Analysis.jpg')
 
-# Plot the average frequency searches for STEM/STEAM programs/courses
-plt.bar(df['Country'], df['Average Frequency Search Programs'])
-plt.xlabel("Country")
-plt.ylabel("Average Frequency Search (STEM/STEAM Programs)")
-plt.title("Average Frequency Search for STEM/STEAM Programs in the Gulf Countries")
-plt.show()
-
-# Plot the average frequency searches for STEM/STEAM competitions
-plt.bar(df['Country'], df['Average Frequency Search Competitions'])
-plt.xlabel("Country")
-plt.ylabel("Average Frequency Search (STEM/STEAM Competitions)")
-plt.title("Average Frequency Search for STEM/STEAM Competitions in the Gulf Countries")
+# Display the figure
 plt.show()
